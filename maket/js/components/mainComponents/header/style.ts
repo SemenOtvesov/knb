@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
-import useTheme from '@js/hooks/useTheme';
 import useWindowSizeCheck from '@js/hooks/useWindowSizeCheck';
-import { motion } from 'framer-motion';
 
 export default () => {
     const size = useWindowSizeCheck();
@@ -15,9 +13,11 @@ export default () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '0 1.25em',
+            padding: '0 1em',
             minHeight: '5em',
             zIndex: 100,
+
+            color: '#fff',
         }),
         Avatar: styled.img({
             width: '13vw',
@@ -33,11 +33,13 @@ export default () => {
         AvatarBox: styled.div({ display: 'flex', alignItems: 'center', gap: '1em' }),
         BalanceBox: styled.div({
             display: 'flex',
-            flexDirection: 'column',
-            justifyItems: 'center',
-            gap: '.6em',
+            alignItems: 'center',
+            gap: 8,
         }),
-        BalanceText: styled.div({}),
+        BalanceText: styled.div({
+            fontWeight: 600,
+            fontSize: '1.25em',
+        }),
         BalanceValue: styled.div({
             display: 'flex',
             alignItems: 'center',
@@ -46,38 +48,14 @@ export default () => {
             gap: '0.5em',
         }),
         BalanceIcon: styled.img({
-            width: '2.5em',
-            top: 0,
-            left: 0,
-            transform: 'scale(0.5) translate(-50%, -50%)',
-            position: 'absolute',
+            width: '2em',
+        }),
+        WalletIcon: styled.img({
+            width: '1.565em',
         }),
         BalanceIconBox: styled.div({
             position: 'relative',
-            width: '1.25em',
-            height: '1.25em',
         }),
-        Lang: styled.div({
-            width: '1.25em',
-            position: 'relative',
-        }),
-        LangPopap: styled(motion.div)({
-            position: 'absolute',
-            width: '8em',
-            zIndex: 100,
-            top: '150%',
-            left: '50%',
-            transform: 'translate(-80%)',
-            padding: '1em',
-            backgroundColor: '',
-            borderRadius: 10,
-            border: `2px solid ${''}`,
-
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.25em',
-        }),
-        LangPopapItem: styled.div({}),
         size,
     };
 };

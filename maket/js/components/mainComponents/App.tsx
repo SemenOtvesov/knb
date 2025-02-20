@@ -4,6 +4,8 @@ import Layout from './layout';
 import MainRoute from '../routes/mainRoute';
 import useAppDispatch from '@js/hooks/useAppDispatch';
 import tgAuth from '@js/api/tgAuth';
+import RaitRoute from '../routes/raitRoute';
+import GameRoute from '../routes/gameRoute';
 
 export default () => {
     const dispatch = useAppDispatch();
@@ -25,6 +27,8 @@ export default () => {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<MainRoute />} />
+                <Route path="raiting" element={<RaitRoute />} />
+                <Route path="game" element={<GameRoute />} />
             </Route>
         </Routes>
     );

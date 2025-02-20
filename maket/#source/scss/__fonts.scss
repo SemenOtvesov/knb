@@ -1,16 +1,15 @@
 @font-face {
     font-family: 'icomoon';
-    src: url('../fonts/icomoon.eot?99klhs');
+    src: url('../fonts/icomoon.eot?kde9nr');
     src:
-        url('../fonts/icomoon.eot?99klhs#iefix') format('embedded-opentype'),
-        url('../fonts/icomoon.ttf?99klhs') format('truetype'),
-        url('../fonts/icomoon.woff?99klhs') format('woff'),
-        url('../fonts/icomoon.svg?99klhs#icomoon') format('svg');
+        url('../fonts/icomoon.eot?kde9nr#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?kde9nr') format('truetype'),
+        url('../fonts/icomoon.woff?kde9nr') format('woff'),
+        url('../fonts/icomoon.svg?kde9nr#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
 }
-
 [class^='icon-']::before,
 [class*=' icon-']::before {
     /* use !important to prevent issues with browser extensions that change fonts */
@@ -27,15 +26,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow:before {
-    content: '\e903';
-}
-.icon-plus:before {
-    content: '\e901';
-}
-.icon-check:before {
-    content: '\e902';
-}
-.icon-exit:before {
+.icon-game:before {
     content: '\e900';
+}
+.icon-rait:before {
+    content: '\e901';
 }

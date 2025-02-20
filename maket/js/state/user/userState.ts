@@ -1,7 +1,12 @@
-import { Tuser } from '@js/types/state/user';
+import { Tgame, Tuser } from '@js/types/state/user';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: { user: Tuser; token: string } = { user: null, token: '' };
+const initialState: { user: Tuser; token: string; game: Tgame; gameType: 'pending' | null } = {
+    user: null,
+    token: '',
+    game: null,
+    gameType: null,
+};
 
 const userState = createSlice({
     name: 'userState',
@@ -10,13 +15,19 @@ const userState = createSlice({
         setUser: (state, { payload }: { payload: Tuser }) => {
             state.user = payload;
         },
-        setUserToken: (state, { payload }: { payload: string }) => {
-            document.cookie = `usertoken=${payload}; path=/;`;
-            state.token = payload;
+        setGame: (state, { payload }: { payload: Tgame }) => {
+            state.game = payload;
         },
+        setGameType: (state, { payload }: { payload: 'pending' | null }) => {
+            state.gameType = payload;
+        },
+        // setUserToken: (state, { payload }: { payload: string }) => {
+        //     document.cookie = `usertoken=${payload}; path=/;`;
+        //     state.token = payload;
+        // },
     },
 });
 
-export const { setUser, setUserToken } = userState.actions;
+export const { setUser, setGame, setGameType } = userState.actions;
 
 export default userState;

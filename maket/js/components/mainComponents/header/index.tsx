@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import style from './style';
 
 // @ts-ignore: Unreachable code error
-import IconCoin from '@maket/img/icon/coin.svg';
+import IconCoin from '@maket/img/icon/cup.svg';
+// @ts-ignore: Unreachable code error
+import IconWallet from '@maket/img/icon/wallet.svg';
 import useAppSelector from '@js/hooks/useAppSelector';
-import { AnimatePresence } from 'framer-motion';
 import useAppDispatch from '@js/hooks/useAppDispatch';
+import Icon from '@js/components/microComponets/icon';
+import { useLocation } from 'react-router-dom';
 
 const header = () => {
-    const dispatch = useAppDispatch();
+    const location = useLocation();
     const {
         Container,
         Avatar,
@@ -18,23 +21,23 @@ const header = () => {
         BalanceText,
         BalanceValue,
         BalanceIcon,
+        WalletIcon,
         BalanceIconBox,
-        Lang,
-        LangPopap,
-        LangPopapItem,
     } = style();
 
     const user = useAppSelector(state => state.userState.user);
-    const [languageListActive, setlanguageListActive] = useState(false);
-
+    if (location.pathname.includes('game') || location.pathname.includes('reiting')) {
+        return <></>;
+    }
     return (
         <Container>
             <AvatarBox>
-                <Avatar src={`https://t.me/i/userpic/160/${user?.username}.jpg`}></Avatar>
-                <Name>{user ? user.username : ''}</Name>
+                <Avatar src={`https://t.me/i/userpic/160/${user?.userInfo.username}.jpg`}></Avatar>
+                <Name>{user ? user.userInfo.username : ''}</Name>
+                <Icon style={{ width: '1.565em', height: '1.565em' }} src={IconWallet} />
             </AvatarBox>
             <BalanceBox>
-                <BalanceText></BalanceText>
+                <BalanceText>{user?.userInfo.wins || 0}</BalanceText>
                 <BalanceValue>
                     {user ? user.coins : ''}
                     <BalanceIconBox>

@@ -38,7 +38,7 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "SFPro", sans-serif;
   background-color: #f9f7f7;
 }
 
@@ -98,8 +98,8 @@ h6 {
 
 @font-face {
   font-family: "icomoon";
-  src: url("../fonts/icomoon.eot?99klhs");
-  src: url("../fonts/icomoon.eot?99klhs#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?99klhs") format("truetype"), url("../fonts/icomoon.woff?99klhs") format("woff"), url("../fonts/icomoon.svg?99klhs#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?kde9nr");
+  src: url("../fonts/icomoon.eot?kde9nr#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?kde9nr") format("truetype"), url("../fonts/icomoon.woff?kde9nr") format("woff"), url("../fonts/icomoon.svg?kde9nr#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -119,20 +119,12 @@ h6 {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow:before {
-  content: "\e903";
-}
-
-.icon-plus:before {
-  content: "\e901";
-}
-
-.icon-check:before {
-  content: "\e902";
-}
-
-.icon-exit:before {
+.icon-game:before {
   content: "\e900";
+}
+
+.icon-rait:before {
+  content: "\e901";
 }
 
 .wrapper {
@@ -187,4 +179,106 @@ picture {
 
 .copyAllert.active {
   opacity: 1 !important;
+}
+
+body {
+  background: linear-gradient(180deg, rgb(1, 134, 114) 0%, rgb(24, 25, 25) 100%);
+}
+
+.loader {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: #fff;
+  border: 8px solid #131a1d;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.loader::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -50%;
+  width: 100%;
+  height: 100%;
+  background: #263238;
+  z-index: 5;
+  border-bottom: 8px solid #131a1d;
+  box-sizing: border-box;
+  animation: eyeShade 3s infinite;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+  width: 32px;
+  z-index: 2;
+  height: 32px;
+  background: #111;
+  border-radius: 50%;
+  animation: eyeMove 3s infinite;
+}
+
+@keyframes eyeShade {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(5px);
+  }
+  40%, 50% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-8px);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+@keyframes eyeMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(0px, 5px);
+  }
+  40%, 50% {
+    transform: translate(0px, -5px);
+  }
+  60% {
+    transform: translate(-10px, -5px);
+  }
+  75% {
+    transform: translate(-20px, 5px);
+  }
+  100% {
+    transform: translate(0, 10px);
+  }
+}
+@font-face {
+  font-family: "Game Of Squids";
+  src: url("../fonts/game_of_squids/SquidIgra.otf"); /* IE 9 Compatibility Mode */
+}
+@font-face {
+  font-family: "SFPro";
+  src: url("../fonts/SFPro/SF-Pro-Display-Regular.otf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SFPro";
+  src: url("../fonts/SFPro/SF-Pro-Display-Semibold.otf");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
