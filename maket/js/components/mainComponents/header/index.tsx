@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './style';
 
 // @ts-ignore: Unreachable code error
@@ -11,8 +11,11 @@ import baseAvatar from '@maket/img/icon/baseAvatar.png';
 import Icon from '@js/components/microComponets/icon';
 import { useLocation } from 'react-router-dom';
 import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
+import addWallet from '@js/api/addWallet';
+import useAppDispatch from '@js/hooks/useAppDispatch';
 
 const header = () => {
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const [tonConnectUI, setOptions] = useTonConnectUI();
     const userFriendlyAddress = useTonAddress();
@@ -33,6 +36,11 @@ const header = () => {
     if (location.pathname.includes('game') || location.pathname.includes('reiting')) {
         return <></>;
     }
+    useEffect(() => {
+        if (user?.userInfo.wallet == '' && userFriendlyAddress) {
+            addWallet(dispatch, userFriendlyAddress);
+        }
+    }, [user, userFriendlyAddress]);
     return (
         <Container>
             <AvatarBox>

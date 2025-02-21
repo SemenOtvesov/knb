@@ -12,7 +12,7 @@ const wrap = document.querySelector('#wrap');
 
 const root = createRoot(wrap);
 root.render(
-    <TonConnectUIProvider manifestUrl={`https://${RAW_MANIFEST}/tonconnect-manifest.json`}>
+    <TonConnectUIProvider manifestUrl={RAW_MANIFEST}>
         <BrowserRouter basemname={`/${process.env.PUBLIC_URL}`}>
             <Provider store={store}>
                 <App />

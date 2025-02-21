@@ -25,6 +25,11 @@ const userState = createSlice({
         setGame: (state, { payload }: { payload: Tgame }) => {
             state.game = payload;
         },
+        setWallet: (state, { payload }: { payload: string }) => {
+            if (state.user) {
+                state.user.userInfo.wallet = payload;
+            }
+        },
         setGameType: (state, { payload }: { payload: 'pending' | null }) => {
             state.gameType = payload;
         },
@@ -34,6 +39,6 @@ const userState = createSlice({
     },
 });
 
-export const { setUser, setGame, setGameType, setRequestGame } = userState.actions;
+export const { setUser, setGame, setGameType, setRequestGame, setWallet } = userState.actions;
 
 export default userState;

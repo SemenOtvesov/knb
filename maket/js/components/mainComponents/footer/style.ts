@@ -10,10 +10,10 @@ export default () => {
             bottom: '1vh',
             left: '0',
             margin: '0 5vw',
-            height: '14em',
-            maxHeight: '14em',
+            height: '6em',
+            maxHeight: '6em',
             width: '90vw',
-            minHeight: '5em',
+            minHeight: '6em',
 
             display: 'flex',
             justifyContent: 'space-between',
