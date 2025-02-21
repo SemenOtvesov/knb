@@ -7,7 +7,11 @@ export type Tuser = {
         draws: number;
         games: number;
     };
-    dayRainting: Array<{}>;
+    dayRainting: Array<{
+        userid: number;
+        wins: number;
+        username: string;
+    }>;
 } | null;
 
 export type Tgame = {

@@ -25,8 +25,8 @@ export default () => {
             padding: '2em 1em',
         }),
         Avatar: styled.img({
-            width: '13vw',
-            height: '13vw',
+            maxWidth: '13vw',
+            maxHeight: '13vw',
             borderRadius: '50%',
             backgroundColor: '',
         }),
@@ -128,6 +128,23 @@ export default () => {
                 transform: ' translate(0, 32vh) rotate(-180deg)',
             },
         }),
+        Notmotion: styled.div({
+            transition: '0.3s',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            gap: '1em',
+            width: '100%',
+            position: 'absolute',
+            top: '0',
+            left: 0,
+            transform: ' translate(0, -100%)',
+            '&.visable': {
+                transform: ' translate(0, 40vh)',
+            },
+        }),
+        NotmotionText: styled.div({ fontFamily: 'Game Of Squids' }),
 
         RewardTextBox: styled.div({
             position: 'absolute',

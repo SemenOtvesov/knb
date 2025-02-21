@@ -58,14 +58,35 @@ export default () => {
             gap: '0.5em',
         }),
         RaitingItemAvatar: styled.img({
-            width: '2em',
-            height: '2em',
+            maxWidth: '2em',
+            maxHeight: '2em',
             borderRadius: '50%',
             backgroundColor: '',
         }),
-        RaitingItemText: styled.div({ fontWeight: 600 }),
+        RaitingItemText: styled.div({
+            fontWeight: 600,
+            fontSize: '1.15em',
+            '&.gold': {
+                backgroundImage:
+                    'linear-gradient(90deg, rgba(249,202,74,1) 0%, rgba(255,217,0,1) 21%, rgba(216,187,25,1) 82%)',
+                '-webkit-background-clip': 'text',
+                '-webkit-text-fill-color': 'transparent',
+            },
+            '&.silver': {
+                backgroundImage:
+                    'linear-gradient(202deg, #ffffff 0%, #c5c5c5 46%, #ababab 80%, #959494 100%)',
+                '-webkit-background-clip': 'text',
+                '-webkit-text-fill-color': 'transparent',
+            },
+            '&.bronze': {
+                backgroundImage:
+                    'linear-gradient(180deg, rgba(255,192,120,1) 0%, rgba(230,147,31,1) 100%)',
+                '-webkit-background-clip': 'text',
+                '-webkit-text-fill-color': 'transparent',
+            },
+        }),
         RaitingItemRight: styled.div({ display: 'flex', alignItems: 'center', gap: '0.25em' }),
-        RaitingItemCount: styled.div({ fontWeight: 600 }),
+        RaitingItemCount: styled.div({ fontWeight: 600, fontSize: '1.15em' }),
         BalanceIcon: styled.img({
             width: '2em',
         }),

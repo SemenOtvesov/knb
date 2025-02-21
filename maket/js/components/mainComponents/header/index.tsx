@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import style from './style';
 
 // @ts-ignore: Unreachable code error
-import IconCoin from '@maket/img/icon/cup.svg';
+import IconCoin from '@maket/img/icon/cup.png';
 // @ts-ignore: Unreachable code error
 import IconWallet from '@maket/img/icon/wallet.svg';
 import useAppSelector from '@js/hooks/useAppSelector';
-import useAppDispatch from '@js/hooks/useAppDispatch';
+// @ts-ignore: Unreachable code error
+import baseAvatar from '@maket/img/icon/baseAvatar.png';
 import Icon from '@js/components/microComponets/icon';
 import { useLocation } from 'react-router-dom';
 
@@ -32,7 +33,19 @@ const header = () => {
     return (
         <Container>
             <AvatarBox>
-                <Avatar src={`https://t.me/i/userpic/160/${user?.userInfo.username}.jpg`}></Avatar>
+                <Avatar
+                    onLoad={e => {
+                        if (e.target.width < 10) {
+                            e.target.src = baseAvatar;
+                        }
+                    }}
+                    onError={e => {
+                        if (e.target.width < 10) {
+                            e.target.src = baseAvatar;
+                        }
+                    }}
+                    src={`https://t.me/i/userpic/160/${user?.userInfo.username}.jpg`}
+                ></Avatar>
                 <Name>{user ? user.userInfo.username : ''}</Name>
                 <Icon style={{ width: '1.565em', height: '1.565em' }} src={IconWallet} />
             </AvatarBox>

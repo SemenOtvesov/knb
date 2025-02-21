@@ -5,7 +5,7 @@ import useAppDispatch from '@js/hooks/useAppDispatch';
 import useAppSelector from '@js/hooks/useAppSelector';
 
 // @ts-ignore: Unreachable code error
-import IconCoin from '@maket/img/icon/cup.svg';
+import IconCoin from '@maket/img/icon/cup.png';
 
 // @ts-ignore: Unreachable code error
 import Камень from '@maket/img/icon/Камень.png';
@@ -13,6 +13,11 @@ import Камень from '@maket/img/icon/Камень.png';
 import Ножницы from '@maket/img/icon/Ножницы.png';
 // @ts-ignore: Unreachable code error
 import Бумага from '@maket/img/icon/Бумага.png';
+// @ts-ignore: Unreachable code error
+import close from '@maket/img/icon/close.png';
+// @ts-ignore: Unreachable code error
+import baseAvatar from '@maket/img/icon/baseAvatar.png';
+
 import makemove from '@js/api/makemove';
 import Counter from './counter';
 
@@ -37,6 +42,8 @@ export default () => {
         RewardTextBox,
         RewardText,
         RewardValue,
+        Notmotion,
+        NotmotionText,
     } = style();
     const { game, user } = useAppSelector(state => state.userState);
 
@@ -54,6 +61,11 @@ export default () => {
                 if (i == 0 || i == 2) {
                     el.classList.add('hidden');
                 }
+                if (game.gameId.Winner != undefined && game.gameId.Move1 == undefined) {
+                    if (i == 1) {
+                        el.classList.add('hidden');
+                    }
+                }
                 if (i == 1) {
                     const userCounter = game.gameId.Player1Id == user?.userInfo.id ? 1 : 2;
                     el
@@ -70,6 +82,8 @@ export default () => {
         }
     }, [game]);
 
+    const userCounter = game?.gameId.Player1Id == user?.userInfo.id ? 1 : 2;
+
     useEffect(() => {
         if (activeCard == 'rock') {
             rockRef.current?.classList.add('active');
@@ -83,8 +97,7 @@ export default () => {
             scissorsRef.current?.classList.add('active');
             scissorsRef.current?.setAttribute('style', 'transition: 0s');
         }
-        if (game && game.gameId.Winner) {
-            const userCounter = game.gameId.Player1Id == user?.userInfo.id ? 1 : 2;
+        if (game && game.gameId.Winner && game.gameId.Move1 != undefined) {
             if (user?.userInfo.id == game.gameId.Winner) {
                 opponentRef.current?.classList.add('activeRed');
             } else {
@@ -92,6 +105,10 @@ export default () => {
             }
             opponentRef.current?.closest('[data-opponent]')?.classList.add('visable');
             document.getElementById('reward')?.classList.add('active');
+        }
+
+        if (game && game.gameId.Winner != undefined && game.gameId.Move1 == undefined) {
+            document.querySelector('[data-notmotion]')?.classList.add('visable');
         }
     });
 
@@ -102,12 +119,18 @@ export default () => {
                     <BottomButton
                         src={
                             game && user
-                                ? // @ts-ignore: Unreachable code error
-                                  imgConfig[
-                                      game.gameId[
-                                          `Move${game.gameId.Player1Id != user.userInfo.id ? 1 : 2}`
+                                ? game.gameId[
+                                      `Move${game.gameId.Player1Id != user.userInfo.id ? 1 : 2}`
+                                  ] == ''
+                                    ? close
+                                    : // @ts-ignore: Unreachable code error
+                                      imgConfig[
+                                          game.gameId[
+                                              `Move${
+                                                  game.gameId.Player1Id != user.userInfo.id ? 1 : 2
+                                              }`
+                                          ]
                                       ]
-                                  ]
                                 : ''
                         }
                     ></BottomButton>
@@ -115,11 +138,32 @@ export default () => {
                 </BottonButtonBox>
             </Opponent>
 
+            <Notmotion data-notmotion>
+                <BottonButtonBox className="butBox">
+                    <BottomButton src={close}></BottomButton>
+                    <NotmotionText>Вы не сходили</NotmotionText>
+                </BottonButtonBox>
+            </Notmotion>
+
             <Top>
-                <PlayerName>{game?.gameId.Player2UserName}</PlayerName>
-                <Avatar src={`https://t.me/i/userpic/160/${'paultonnn'}.jpg`}></Avatar>
+                <PlayerName>{game?.gameId[`Player${userCounter}UserName`]}</PlayerName>
+                <Avatar
+                    onLoad={e => {
+                        if (e.target.width < 10) {
+                            e.target.src = baseAvatar;
+                        }
+                    }}
+                    onError={e => {
+                        if (e.target.width < 10) {
+                            e.target.src = baseAvatar;
+                        }
+                    }}
+                    src={`https://t.me/i/userpic/160/${game?.gameId[
+                        `Player${userCounter}UserName`
+                    ]}.jpg`}
+                ></Avatar>
                 <Rewards>
-                    300{' '}
+                    {game?.gameId[`User${userCounter}Wins`]}
                     <BalanceIcon style={{ fontSize: '0.75em' }} alt="" src={IconCoin}></BalanceIcon>
                 </Rewards>
                 <Counter game={game} />

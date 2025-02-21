@@ -20,8 +20,8 @@ export default () => {
             color: '#fff',
         }),
         Avatar: styled.img({
-            width: '13vw',
-            height: '13vw',
+            maxWidth: '13vw',
+            maxHeight: '13vw',
             borderRadius: '50%',
             backgroundColor: '',
         }),

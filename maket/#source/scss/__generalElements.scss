@@ -54,6 +54,7 @@ picture {
 
 body {
     background: linear-gradient(180deg, rgba(1, 134, 114, 1) 0%, rgba(24, 25, 25, 1) 100%);
+    padding-bottom: var(--ios-padding);
 }
 
 .loader {

@@ -2,7 +2,7 @@ import React from 'react';
 import style from './style';
 
 // @ts-ignore: Unreachable code error
-import IconCoin from '@maket/img/icon/cup.svg';
+import IconCoin from '@maket/img/icon/cup.png';
 import Icon from '@js/components/microComponets/icon';
 import CopyButton from './copyButton';
 import { openAllert } from '@js/components/mainComponents/fn/allert';

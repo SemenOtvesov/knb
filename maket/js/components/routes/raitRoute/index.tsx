@@ -2,15 +2,17 @@ import React from 'react';
 import style from './style';
 
 // @ts-ignore: Unreachable code error
-import IconCoin from '@maket/img/icon/cup.svg';
+import IconCoin from '@maket/img/icon/cup.png';
 
-import { openAllert } from '@js/components/mainComponents/fn/allert';
-import { inviteUrl } from '@js/constants/values';
-import { TappDispatch } from '@js/state/store';
+// @ts-ignore: Unreachable code error
+import baseAvatar from '@maket/img/icon/baseAvatar.png';
+
 import useAppDispatch from '@js/hooks/useAppDispatch';
+import useAppSelector from '@js/hooks/useAppSelector';
 
 export default () => {
     const dispatch = useAppDispatch();
+    const user = useAppSelector(state => state.userState.user);
     const {
         Container,
         Title,
@@ -35,18 +37,36 @@ export default () => {
                 <TextPlug>100$</TextPlug>
             </TextBox>
             <Raiting>
-                <RaitingItem>
-                    <RaitingItemLeft>
-                        <RaitingItemAvatar
-                            src={`https://t.me/i/userpic/160/${'paultonnn'}.jpg`}
-                        ></RaitingItemAvatar>
-                        <RaitingItemText>Mike</RaitingItemText>
-                    </RaitingItemLeft>
-                    <RaitingItemRight>
-                        <RaitingItemCount>151</RaitingItemCount>
-                        <BalanceIcon alt="" src={IconCoin}></BalanceIcon>
-                    </RaitingItemRight>
-                </RaitingItem>
+                {user?.dayRainting.map((el, i) => (
+                    <RaitingItem>
+                        <RaitingItemLeft>
+                            <RaitingItemAvatar
+                                src={`https://t.me/i/userpic/160/${el.username}.jpg`}
+                                onLoad={e => {
+                                    if (e.target.width < 10) {
+                                        e.target.src = baseAvatar;
+                                    }
+                                }}
+                                onError={e => {
+                                    if (e.target.width < 10) {
+                                        e.target.src = baseAvatar;
+                                    }
+                                }}
+                            ></RaitingItemAvatar>
+                            <RaitingItemText
+                                className={`${
+                                    i == 0 ? 'gold' : i == 1 ? 'silver' : i == 2 ? 'bronze' : ''
+                                }`}
+                            >
+                                {i + 1}. {el.username}
+                            </RaitingItemText>
+                        </RaitingItemLeft>
+                        <RaitingItemRight>
+                            <RaitingItemCount>{el.wins}</RaitingItemCount>
+                            <BalanceIcon alt="" src={IconCoin}></BalanceIcon>
+                        </RaitingItemRight>
+                    </RaitingItem>
+                ))}
             </Raiting>
         </Container>
     );
