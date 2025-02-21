@@ -125,6 +125,11 @@ module.exports = {
                     to: path.resolve(__dirname, 'docs/.vercelignore'),
                     noErrorOnMissing: true,
                 },
+                {
+                    from: path.resolve(__dirname, 'tonconnect-manifest.json'),
+                    to: path.resolve(__dirname, 'docs/tonconnect-manifest.json'),
+                    noErrorOnMissing: true,
+                },
             ],
         }),
     ],
