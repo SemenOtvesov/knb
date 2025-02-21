@@ -10,11 +10,12 @@ import useAppSelector from '@js/hooks/useAppSelector';
 import baseAvatar from '@maket/img/icon/baseAvatar.png';
 import Icon from '@js/components/microComponets/icon';
 import { useLocation } from 'react-router-dom';
-import { APP_URL } from '@js/constants/values';
+import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
 
 const header = () => {
     const location = useLocation();
-
+    const [tonConnectUI, setOptions] = useTonConnectUI();
+    const userFriendlyAddress = useTonAddress();
     const {
         Container,
         Avatar,
@@ -50,7 +51,12 @@ const header = () => {
                 ></Avatar>
                 <Name>{user ? user.userInfo.username : ''}</Name>
                 <Icon
-                    id="ton-connect"
+                    onClick={() =>
+                        userFriendlyAddress == '' &&
+                        tonConnectUI.openModal().then(res => {
+                            console.log(res);
+                        })
+                    }
                     style={{ width: '1.565em', height: '1.565em' }}
                     src={IconWallet}
                 />
