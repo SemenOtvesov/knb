@@ -52,7 +52,9 @@ export default () => {
             {gameType == 'pending' && (
                 <Loader>
                     <div className="loader"></div>
-                    <div className="">Ожидание игрока...</div>
+                    <div className="" style={{ width: '100%', textAlign: 'center' }}>
+                        Ожидание игрока...
+                    </div>
                 </Loader>
             )}
         </Container>
