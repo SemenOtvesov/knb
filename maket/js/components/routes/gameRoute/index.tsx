@@ -83,7 +83,6 @@ export default () => {
     }, [game]);
 
     const userCounter = game?.gameId.Player1Id == user?.userInfo.id ? 1 : 2;
-
     useEffect(() => {
         if (activeCard == 'rock') {
             rockRef.current?.classList.add('active');

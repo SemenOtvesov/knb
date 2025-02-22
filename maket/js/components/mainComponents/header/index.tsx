@@ -33,14 +33,15 @@ const header = () => {
     } = style();
 
     const user = useAppSelector(state => state.userState.user);
-    if (location.pathname.includes('game') || location.pathname.includes('reiting')) {
-        return <></>;
-    }
     useEffect(() => {
         if (user?.userInfo.wallet == '' && userFriendlyAddress) {
             addWallet(dispatch, userFriendlyAddress);
         }
     }, [user, userFriendlyAddress]);
+
+    if (location.pathname.includes('game') || location.pathname.includes('reiting')) {
+        return <></>;
+    }
     return (
         <Container>
             <AvatarBox>
