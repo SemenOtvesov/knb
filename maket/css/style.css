@@ -265,6 +265,14 @@ body {
     transform: translate(0, 10px);
   }
 }
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */ /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */ /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+           supported by Chrome, Edge, Opera and Firefox */
+}
+
 @font-face {
   font-family: "Game Of Squids";
   src: url("../fonts/game_of_squids/SquidIgra.otf"); /* IE 9 Compatibility Mode */

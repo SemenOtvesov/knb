@@ -30,6 +30,7 @@ export default () => {
             </Preview>
             <ButtinBox>
                 <ButtonOne
+                    className="noselect"
                     onClick={() => {
                         startGame(dispatch, navigate);
                     }}
@@ -38,6 +39,7 @@ export default () => {
                     Играть
                 </ButtonOne>
                 <ButtonOne
+                    className="noselect"
                     onClick={() => {
                         copyClickboard(dispatch);
                     }}

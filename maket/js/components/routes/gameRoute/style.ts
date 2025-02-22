@@ -22,7 +22,7 @@ export default () => {
             gap: '3vh',
             color: '#fff',
 
-            padding: '2em 1em',
+            padding: '2vh 1em',
         }),
         Avatar: styled.img({
             maxWidth: '13vw',
@@ -36,7 +36,7 @@ export default () => {
         Top: styled.div({
             display: 'flex',
             flexDirection: 'column',
-            gap: '1em',
+            gap: '1vh',
             alignItems: 'center',
             justifyContent: 'center',
         }),
@@ -79,11 +79,18 @@ export default () => {
         BottomButton: styled.img({
             pointerEvents: 'all',
             borderRadius: '50%',
+            height: '17vh',
+            maxWidth: '30vw',
         }),
         BottonButtonBox: styled.div({
             pointerEvents: 'all',
             transition: '0.3s',
             position: 'relative',
+
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
             '&:nth-child(2)': {
                 transform: 'translate(0,-50%)',
             },
@@ -125,7 +132,7 @@ export default () => {
             left: 0,
             transform: ' translate(0, -100%) rotate(-180deg)',
             '&.visable': {
-                transform: ' translate(0, 32vh) rotate(-180deg)',
+                transform: ' translate(0, calc(32vh + 50%)) rotate(-180deg)',
             },
         }),
         Notmotion: styled.div({
@@ -141,7 +148,7 @@ export default () => {
             left: 0,
             transform: ' translate(0, -100%)',
             '&.visable': {
-                transform: ' translate(0, 40vh)',
+                transform: ' translate(0, calc(50vh - 50%))',
             },
         }),
         NotmotionText: styled.div({ fontFamily: 'Game Of Squids' }),

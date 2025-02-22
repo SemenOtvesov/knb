@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import style from './style';
 
 // @ts-ignore: Unreachable code error
@@ -14,73 +14,85 @@ import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
 import addWallet from '@js/api/addWallet';
 import useAppDispatch from '@js/hooks/useAppDispatch';
 
-const header = () => {
-    const dispatch = useAppDispatch();
-    const location = useLocation();
-    const [tonConnectUI, setOptions] = useTonConnectUI();
-    const userFriendlyAddress = useTonAddress();
-    const {
-        Container,
-        Avatar,
-        Name,
-        AvatarBox,
-        BalanceBox,
-        BalanceText,
-        BalanceValue,
-        BalanceIcon,
-        WalletIcon,
-        BalanceIconBox,
-    } = style();
+const header = memo(
+    () => {
+        const dispatch = useAppDispatch();
+        const location = useLocation();
+        const [tonConnectUI, setOptions] = useTonConnectUI();
+        const userFriendlyAddress = useTonAddress();
+        const {
+            Container,
+            Avatar,
+            Name,
+            AvatarBox,
+            BalanceBox,
+            BalanceText,
+            BalanceValue,
+            BalanceIcon,
+            WalletIcon,
+            BalanceIconBox,
+        } = style();
 
-    const user = useAppSelector(state => state.userState.user);
-    useEffect(() => {
-        if (user?.userInfo.wallet == '' && userFriendlyAddress) {
-            addWallet(dispatch, userFriendlyAddress);
+        const user = useAppSelector(state => state.userState.user);
+        useEffect(() => {
+            if (user?.userInfo.wallet == '' && userFriendlyAddress) {
+                addWallet(dispatch, userFriendlyAddress);
+            }
+        }, [user, userFriendlyAddress]);
+
+        if (location.pathname.includes('game') || location.pathname.includes('raiting')) {
+            return <></>;
         }
-    }, [user, userFriendlyAddress]);
 
-    if (location.pathname.includes('game') || location.pathname.includes('reiting')) {
-        return <></>;
-    }
-    return (
-        <Container>
-            <AvatarBox>
-                <Avatar
-                    onLoad={e => {
-                        if (e.target.width < 10) {
-                            e.target.src = baseAvatar;
+        let scrollWidth = Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.offsetWidth,
+            document.body.clientWidth,
+            document.documentElement.clientWidth,
+        );
+        return (
+            <Container>
+                <AvatarBox>
+                    <Avatar
+                        onLoad={e => {
+                            if (e.target.width < scrollWidth * 0.13) {
+                                e.target.src = baseAvatar;
+                            }
+                        }}
+                        onError={e => {
+                            if (e.target.width < scrollWidth * 0.13) {
+                                e.target.src = baseAvatar;
+                            }
+                        }}
+                        src={`https://t.me/i/userpic/160/${user?.userInfo.username}.jpg`}
+                    ></Avatar>
+                    <Name>{user ? user.userInfo.username : ''}</Name>
+                    <Icon
+                        onClick={() =>
+                            userFriendlyAddress == '' &&
+                            tonConnectUI.openModal().then(res => {
+                                console.log(res);
+                            })
                         }
-                    }}
-                    onError={e => {
-                        if (e.target.width < 10) {
-                            e.target.src = baseAvatar;
-                        }
-                    }}
-                    src={`https://t.me/i/userpic/160/${user?.userInfo.username}.jpg`}
-                ></Avatar>
-                <Name>{user ? user.userInfo.username : ''}</Name>
-                <Icon
-                    onClick={() =>
-                        userFriendlyAddress == '' &&
-                        tonConnectUI.openModal().then(res => {
-                            console.log(res);
-                        })
-                    }
-                    style={{ width: '1.565em', height: '1.565em' }}
-                    src={IconWallet}
-                />
-            </AvatarBox>
-            <BalanceBox>
-                <BalanceText>{user?.userInfo.wins || 0}</BalanceText>
-                <BalanceValue>
-                    {user ? user.coins : ''}
-                    <BalanceIconBox>
-                        <BalanceIcon alt="" src={IconCoin}></BalanceIcon>
-                    </BalanceIconBox>
-                </BalanceValue>
-            </BalanceBox>
-        </Container>
-    );
-};
+                        style={{ width: '1.565em', height: '1.565em' }}
+                        src={IconWallet}
+                    />
+                </AvatarBox>
+                <BalanceBox>
+                    <BalanceText>{user?.userInfo.wins || 0}</BalanceText>
+                    <BalanceValue>
+                        {user ? user.coins : ''}
+                        <BalanceIconBox>
+                            <BalanceIcon alt="" src={IconCoin}></BalanceIcon>
+                        </BalanceIconBox>
+                    </BalanceValue>
+                </BalanceBox>
+            </Container>
+        );
+    },
+    () => true,
+);
 
 export default header;

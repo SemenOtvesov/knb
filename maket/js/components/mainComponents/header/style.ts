@@ -22,8 +22,11 @@ export default () => {
         Avatar: styled.img({
             maxWidth: '13vw',
             maxHeight: '13vw',
+            minWidth: '12vw',
+            minHeight: '12vw',
             borderRadius: '50%',
             backgroundColor: '',
+            background: "url('/img/icon/baseAvatar.png') 0 0/100% 100% no-repeat",
         }),
         Name: styled.div({
             color: '',

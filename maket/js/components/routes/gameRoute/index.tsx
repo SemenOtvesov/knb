@@ -55,7 +55,7 @@ export default () => {
     const [activeCard, setactiveCard] = useState('');
 
     useEffect(() => {
-        if (game && game.gameId.Winner) {
+        if (game && game.gameId.Winner != undefined) {
             const buttions = document.querySelectorAll('[data-butbox]');
             buttions.forEach((el, i) => {
                 if (i == 0 || i == 2) {
@@ -72,7 +72,7 @@ export default () => {
                         ?.querySelector('img')
                         // @ts-ignore: Unreachable code error
                         ?.setAttribute('src', imgConfig[game.gameId[`Move${userCounter}`]]);
-                    if (user?.userInfo.id != game.gameId.Winner) {
+                    if (user?.userInfo.id != game.gameId.Winner && game.gameId.Winner != 0) {
                         el.querySelector('div')?.classList.add('activeRed');
                     } else {
                         el.querySelector('div')?.classList.add('activeGreen');
@@ -96,7 +96,7 @@ export default () => {
             scissorsRef.current?.classList.add('active');
             scissorsRef.current?.setAttribute('style', 'transition: 0s');
         }
-        if (game && game.gameId.Winner && game.gameId.Move1 != undefined) {
+        if (game && game.gameId.Winner != undefined && game.gameId.Move1 != undefined) {
             if (user?.userInfo.id == game.gameId.Winner) {
                 opponentRef.current?.classList.add('activeRed');
             } else {
@@ -216,7 +216,11 @@ export default () => {
 
                 <RewardTextBox id="reward">
                     <RewardText>
-                        {user?.userInfo.id == game?.gameId.Winner ? 'Победа!' : 'Проигрыш...'}
+                        {user?.userInfo.id == game?.gameId.Winner
+                            ? 'Победа!'
+                            : game?.gameId.Winner == 0
+                            ? 'Ничья'
+                            : 'Проигрыш...'}
                     </RewardText>
                     <RewardValue>
                         {user?.userInfo.id == game?.gameId.Winner ? '+1' : '+0'}
