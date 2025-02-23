@@ -48,7 +48,7 @@ export default ({ game }: { game: Tgame }) => {
                 if (i < 1) {
                     clearInterval(int);
                     timer = 5;
-                    // navigate('/');
+                    navigate('/');
                 } else {
                     i -= 1;
                 }
