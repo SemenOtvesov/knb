@@ -109,9 +109,6 @@ export default () => {
             transform: 'translate(-50%, -50%)',
             borderRadius: '50%',
             transition: '0.3s',
-            ':hover': {
-                boxShadow: '0 0 10px 5px #FFFFFF',
-            },
             '&.active': {
                 boxShadow: '0 0 10px 5px #FFFFFF',
             },
