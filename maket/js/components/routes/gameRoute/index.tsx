@@ -15,11 +15,9 @@ import Ножницы from '@maket/img/icon/Ножницы.png';
 import Бумага from '@maket/img/icon/Бумага.png';
 // @ts-ignore: Unreachable code error
 import close from '@maket/img/icon/close.png';
-// @ts-ignore: Unreachable code error
-import baseAvatar from '@maket/img/icon/baseAvatar.png';
 
 import makemove from '@js/api/makemove';
-import Counter from './counter';
+import Top from './top';
 
 let notSelected = true;
 
@@ -29,10 +27,6 @@ export default () => {
     const dispatch = useAppDispatch();
     const {
         Container,
-        Top,
-        PlayerName,
-        Avatar,
-        Rewards,
         BalanceIcon,
         Bottom,
         BottomButton,
@@ -46,6 +40,10 @@ export default () => {
         NotmotionText,
     } = style();
     const { game, user } = useAppSelector(state => state.userState);
+
+    useEffect(() => {
+        notSelected = true;
+    }, []);
 
     const rockRef = useRef<HTMLDivElement>(null);
     const paperRef = useRef<HTMLDivElement>(null);
@@ -145,30 +143,7 @@ export default () => {
                 </BottonButtonBox>
             </Notmotion>
 
-            <Top>
-                <PlayerName>{game?.gameId[`Player${opponentCounter}`].username}</PlayerName>
-                <Avatar
-                    onLoad={e => {
-                        if (e.target.width < 10) {
-                            e.target.src = baseAvatar;
-                        }
-                    }}
-                    onError={e => {
-                        if (e.target.width < 10) {
-                            e.target.src = baseAvatar;
-                        }
-                    }}
-                    src={`https://t.me/i/userpic/160/${game?.gameId[`Player${opponentCounter}`]
-                        .username}.jpg`}
-                ></Avatar>
-                <Rewards>
-                    {game && game.gameId.Winner != undefined && game.gameId.Move1 != undefined
-                        ? game?.gameId[`Player${opponentCounter}`].wins
-                        : game?.gameId[`Player${opponentCounter}`].wins || 0 + 1}
-                    <BalanceIcon style={{ fontSize: '0.75em' }} alt="" src={IconCoin}></BalanceIcon>
-                </Rewards>
-                <Counter game={game} />
-            </Top>
+            <Top game={game} opponentCounter={opponentCounter} />
             <Bottom>
                 <BottonButtonBox
                     data-butbox

@@ -22,8 +22,12 @@ const userState = createSlice({
         setUser: (state, { payload }: { payload: Tuser }) => {
             state.user = payload;
         },
-        setGame: (state, { payload }: { payload: Tgame }) => {
-            state.game = { gameId: { ...state.game?.gameId, ...payload?.gameId } };
+        setGame: (state, { payload }: { payload: { game: Tgame; init?: boolean } }) => {
+            if (payload?.init) {
+                state.game = payload.game;
+            } else {
+                state.game = { gameId: { ...state.game?.gameId, ...payload?.game.gameId } };
+            }
         },
         setWallet: (state, { payload }: { payload: string }) => {
             if (state.user) {

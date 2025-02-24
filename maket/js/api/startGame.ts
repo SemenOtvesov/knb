@@ -23,12 +23,12 @@ export default async (dispatch: TappDispatch, navigate: NavigateFunction) => {
         });
     const startTimestamp = +new Date(res.data.gameId.Start);
     if (startTimestamp - +new Date() < 0) {
+        dispatch(setGame({ game: res.data, init: true }));
         navigate('/game');
-        dispatch(setGame(res.data));
     } else {
         setTimeout(() => {
+            dispatch(setGame({ game: res.data, init: true }));
             navigate('/game');
-            dispatch(setGame(res.data));
         }, startTimestamp - +new Date());
     }
 
