@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './style';
 
 // @ts-ignore: Unreachable code error
@@ -9,6 +9,7 @@ import baseAvatar from '@maket/img/icon/baseAvatar.png';
 
 import useAppDispatch from '@js/hooks/useAppDispatch';
 import useAppSelector from '@js/hooks/useAppSelector';
+import tgAuth from '@js/api/tgAuth';
 
 export default () => {
     const dispatch = useAppDispatch();
@@ -28,6 +29,10 @@ export default () => {
         RaitingItemCount,
         BalanceIcon,
     } = style();
+
+    useEffect(() => {
+        tgAuth(dispatch);
+    }, []);
 
     return (
         <Container className="scrollbar_hidden">

@@ -162,7 +162,9 @@ export default () => {
                         .username}.jpg`}
                 ></Avatar>
                 <Rewards>
-                    {game?.gameId[`Player${opponentCounter}`].wins}
+                    {game && game.gameId.Winner != undefined && game.gameId.Move1 != undefined
+                        ? game?.gameId[`Player${opponentCounter}`].wins
+                        : game?.gameId[`Player${opponentCounter}`].wins || 0 + 1}
                     <BalanceIcon style={{ fontSize: '0.75em' }} alt="" src={IconCoin}></BalanceIcon>
                 </Rewards>
                 <Counter game={game} />
