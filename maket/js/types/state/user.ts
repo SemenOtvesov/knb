@@ -19,8 +19,8 @@ export type Tgame = {
         id: number;
         Player1Id: number;
         Player2Id: number;
-        Player1UserName: string;
-        Player2UserName: string;
+        Player1: Tplayer;
+        Player2: Tplayer;
         Start: string;
         End: string;
 
@@ -29,3 +29,12 @@ export type Tgame = {
         Winner: number;
     };
 } | null;
+
+export type Tplayer = {
+    id: number;
+    wallet: string;
+    wins: number;
+    username: string;
+    draws: number;
+    games: number;
+};

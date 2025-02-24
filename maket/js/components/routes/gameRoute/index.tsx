@@ -83,6 +83,7 @@ export default () => {
     }, [game]);
 
     const userCounter = game?.gameId.Player1Id == user?.userInfo.id ? 1 : 2;
+    const opponentCounter = game?.gameId.Player1Id == user?.userInfo.id ? 2 : 1;
     useEffect(() => {
         if (activeCard == 'rock') {
             rockRef.current?.classList.add('active');
@@ -145,7 +146,7 @@ export default () => {
             </Notmotion>
 
             <Top>
-                <PlayerName>{game?.gameId[`Player${userCounter}UserName`]}</PlayerName>
+                <PlayerName>{game?.gameId[`Player${opponentCounter}`].username}</PlayerName>
                 <Avatar
                     onLoad={e => {
                         if (e.target.width < 10) {
@@ -157,12 +158,11 @@ export default () => {
                             e.target.src = baseAvatar;
                         }
                     }}
-                    src={`https://t.me/i/userpic/160/${game?.gameId[
-                        `Player${userCounter}UserName`
-                    ]}.jpg`}
+                    src={`https://t.me/i/userpic/160/${game?.gameId[`Player${opponentCounter}`]
+                        .username}.jpg`}
                 ></Avatar>
                 <Rewards>
-                    {game?.gameId[`User${userCounter}Wins`]}
+                    {game?.gameId[`Player${opponentCounter}`].wins}
                     <BalanceIcon style={{ fontSize: '0.75em' }} alt="" src={IconCoin}></BalanceIcon>
                 </Rewards>
                 <Counter game={game} />
