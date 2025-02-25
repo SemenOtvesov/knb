@@ -61,7 +61,10 @@ export default ({}: Tprops) => {
             } else {
                 opponentRef.current?.classList.add('activeGreen');
             }
-            opponentRef.current?.closest('[data-opponent]')?.classList.add('visable');
+            setTimeout(() => {
+                opponentRef.current?.closest('[data-opponent]')?.classList.add('visable');
+            }, 300);
+
             document.getElementById('reward')?.classList.add('active');
         }
 

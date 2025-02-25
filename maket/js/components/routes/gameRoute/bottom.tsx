@@ -39,7 +39,6 @@ export default () => {
         notSelected = true;
     }, []);
     useEffect(() => {
-        console.log(activeCard, rockRef.current);
         if (activeCard == 'rock') {
             rockRef.current?.classList.add('active');
             rockRef.current?.setAttribute('style', 'transition: 0s');
@@ -58,7 +57,7 @@ export default () => {
         <Bottom>
             <BottonButtonBox
                 data-butbox
-                className="butBox"
+                className="butBox noselect"
                 onClick={e => {
                     if (game?.gameId.Winner == undefined) {
                         if (notSelected) {
@@ -74,7 +73,7 @@ export default () => {
             </BottonButtonBox>
             <BottonButtonBox
                 data-butbox
-                className="butBox"
+                className="butBox noselect"
                 onClick={e => {
                     if (game?.gameId.Winner == undefined) {
                         if (notSelected) {
@@ -90,7 +89,7 @@ export default () => {
             </BottonButtonBox>
             <BottonButtonBox
                 data-butbox
-                className="butBox"
+                className="butBox noselect"
                 onClick={e => {
                     if (game?.gameId.Winner == undefined) {
                         if (notSelected) {
