@@ -27,6 +27,8 @@ export default () => {
         Avatar: styled.img({
             maxWidth: '13vw',
             maxHeight: '13vw',
+            minWidth: '12vw',
+            minHeight: '12vw',
             borderRadius: '50%',
             backgroundColor: '',
         }),

@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { memo } from 'react';
 import style from './style';
-import { Tgame } from '@js/types/state/user';
 import Counter from './counter';
 
 // @ts-ignore: Unreachable code error
 import IconCoin from '@maket/img/icon/cup.png';
 // @ts-ignore: Unreachable code error
 import baseAvatar from '@maket/img/icon/baseAvatar.png';
+import useAppSelector from '@js/hooks/useAppSelector';
 
-type Tprops = { game: Tgame; opponentCounter: 1 | 2 };
+export default memo(() => {
+    let scrollWidth = Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.body.clientWidth,
+        document.documentElement.clientWidth,
+    );
 
-export default ({ game, opponentCounter }: Tprops) => {
+    const { game, user } = useAppSelector(state => state.userState);
     const { Top, PlayerName, Avatar, Rewards, BalanceIcon } = style();
+    const opponentCounter = game?.gameId.Player1Id == user?.userInfo.id ? 2 : 1;
     return (
         <Top>
             <PlayerName>{game?.gameId[`Player${opponentCounter}`].username}</PlayerName>
             <Avatar
                 onLoad={e => {
-                    if (e.target.width < 10) {
+                    if (e.target.width < scrollWidth * 0.13) {
                         e.target.src = baseAvatar;
                     }
                 }}
                 onError={e => {
-                    if (e.target.width < 10) {
+                    if (e.target.width < scrollWidth * 0.13) {
                         e.target.src = baseAvatar;
                     }
                 }}
@@ -38,4 +47,4 @@ export default ({ game, opponentCounter }: Tprops) => {
             <Counter game={game} />
         </Top>
     );
-};
+});
