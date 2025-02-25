@@ -11,7 +11,7 @@ export default () => {
     const { Container } = style();
 
     return (
-        <Container className="scrollbar_hidden">
+        <Container id="gameContainer" className="scrollbar_hidden">
             <Opponents />
             <Top />
             <Bottom />

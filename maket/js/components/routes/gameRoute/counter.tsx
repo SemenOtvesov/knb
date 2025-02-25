@@ -43,12 +43,23 @@ export default ({ game }: { game: Tgame }) => {
 
     useEffect(() => {
         if (game && game.gameId.Winner != undefined) {
+            const butboxs = document.querySelectorAll('[data-butbox]');
+            butboxs.forEach(el => {
+                el.setAttribute('style', 'pointer-events: none;');
+                el.querySelector('div')?.setAttribute('style', 'pointer-events: none;');
+                el.querySelector('img')?.setAttribute('style', 'pointer-events: none;');
+            });
             let i = 5;
             const int = setInterval(() => {
                 if (i < 1) {
                     clearInterval(int);
                     timer = 5;
                     navigate('/');
+                    butboxs.forEach(el => {
+                        el.setAttribute('style', '');
+                        el.querySelector('div')?.setAttribute('style', '');
+                        el.querySelector('img')?.setAttribute('style', '');
+                    });
                 } else {
                     i -= 1;
                 }

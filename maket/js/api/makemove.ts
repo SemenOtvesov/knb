@@ -29,14 +29,14 @@ export default async (
 
     const endTimestamp = +new Date(res.data.Result.End);
     if (endTimestamp - +new Date() < 0) {
-        dispatch(setRequestGame(false));
         dispatch(setGame({ game: { gameId: res.data.Result } }));
         dispatch(userUpdResultGame({ gameId: res.data.Result }));
+        dispatch(setRequestGame(false));
     } else {
         setTimeout(() => {
-            dispatch(setRequestGame(false));
             dispatch(setGame({ game: { gameId: res.data.Result } }));
             dispatch(userUpdResultGame({ gameId: res.data.Result }));
+            dispatch(setRequestGame(false));
         }, endTimestamp - +new Date());
     }
     return res.data;

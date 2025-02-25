@@ -60,11 +60,13 @@ export default () => {
                 data-butbox
                 className="butBox"
                 onClick={e => {
-                    if (notSelected) {
-                        notSelected = false;
-                        setactiveCard('rock');
+                    if (game?.gameId.Winner == undefined) {
+                        if (notSelected) {
+                            notSelected = false;
+                            setactiveCard('rock');
+                        }
+                        game && makemove(dispatch, game.gameId.id, 'rock');
                     }
-                    game && makemove(dispatch, game.gameId.id, 'rock');
                 }}
             >
                 <BottomButton src={Камень}></BottomButton>
@@ -74,11 +76,13 @@ export default () => {
                 data-butbox
                 className="butBox"
                 onClick={e => {
-                    if (notSelected) {
-                        notSelected = false;
-                        setactiveCard('scissors');
+                    if (game?.gameId.Winner == undefined) {
+                        if (notSelected) {
+                            notSelected = false;
+                            setactiveCard('scissors');
+                        }
+                        game && makemove(dispatch, game.gameId.id, 'scissors');
                     }
-                    game && makemove(dispatch, game.gameId.id, 'scissors');
                 }}
             >
                 <BottomButton src={Ножницы}></BottomButton>
@@ -88,12 +92,13 @@ export default () => {
                 data-butbox
                 className="butBox"
                 onClick={e => {
-                    console.log(notSelected);
-                    if (notSelected) {
-                        notSelected = false;
-                        setactiveCard('paper');
+                    if (game?.gameId.Winner == undefined) {
+                        if (notSelected) {
+                            notSelected = false;
+                            setactiveCard('paper');
+                        }
+                        game && makemove(dispatch, game.gameId.id, 'paper');
                     }
-                    game && makemove(dispatch, game.gameId.id, 'paper');
                 }}
             >
                 <BottomButton src={Бумага}></BottomButton>
