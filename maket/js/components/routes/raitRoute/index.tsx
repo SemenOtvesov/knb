@@ -33,7 +33,9 @@ export default () => {
     useEffect(() => {
         tgAuth(dispatch);
     }, []);
-
+    if (!user) {
+        return <></>;
+    }
     return (
         <Container className="scrollbar_hidden">
             <Title>Рейтинг побед</Title>
@@ -44,9 +46,15 @@ export default () => {
             <Raiting>
                 {user?.dayRainting.length == 0
                     ? 'Пока что пусто('
-                    : user?.dayRainting
-                          .sort((p, n) => (p.wins > n.wins ? -1 : 1))
-                          .map((el, i) => (
+                    : [...user.dayRainting]
+                          ?.sort((p, n) => {
+                              if (p?.wins > n?.wins) {
+                                  return -1;
+                              } else {
+                                  return 1;
+                              }
+                          })
+                          ?.map((el, i) => (
                               <RaitingItem>
                                   <RaitingItemLeft>
                                       <RaitingItemAvatar
