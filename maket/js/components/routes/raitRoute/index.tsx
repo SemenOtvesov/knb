@@ -42,36 +42,46 @@ export default () => {
                 <TextPlug>100$</TextPlug>
             </TextBox>
             <Raiting>
-                {user?.dayRainting.map((el, i) => (
-                    <RaitingItem>
-                        <RaitingItemLeft>
-                            <RaitingItemAvatar
-                                src={`https://t.me/i/userpic/160/${el.username}.jpg`}
-                                onLoad={e => {
-                                    if (e.target.width < 10) {
-                                        e.target.src = baseAvatar;
-                                    }
-                                }}
-                                onError={e => {
-                                    if (e.target.width < 10) {
-                                        e.target.src = baseAvatar;
-                                    }
-                                }}
-                            ></RaitingItemAvatar>
-                            <RaitingItemText
-                                className={`${
-                                    i == 0 ? 'gold' : i == 1 ? 'silver' : i == 2 ? 'bronze' : ''
-                                }`}
-                            >
-                                {i + 1}. {el.username}
-                            </RaitingItemText>
-                        </RaitingItemLeft>
-                        <RaitingItemRight>
-                            <RaitingItemCount>{el.wins}</RaitingItemCount>
-                            <BalanceIcon alt="" src={IconCoin}></BalanceIcon>
-                        </RaitingItemRight>
-                    </RaitingItem>
-                ))}
+                {user?.dayRainting.length == 0
+                    ? 'Пока что пусто('
+                    : user?.dayRainting
+                          .sort((p, n) => (p.wins > n.wins ? -1 : 1))
+                          .map((el, i) => (
+                              <RaitingItem>
+                                  <RaitingItemLeft>
+                                      <RaitingItemAvatar
+                                          src={`https://t.me/i/userpic/160/${el.username}.jpg`}
+                                          onLoad={e => {
+                                              if (e.target.width < 10) {
+                                                  e.target.src = baseAvatar;
+                                              }
+                                          }}
+                                          onError={e => {
+                                              if (e.target.width < 10) {
+                                                  e.target.src = baseAvatar;
+                                              }
+                                          }}
+                                      ></RaitingItemAvatar>
+                                      <RaitingItemText
+                                          className={`${
+                                              i == 0
+                                                  ? 'gold'
+                                                  : i == 1
+                                                  ? 'silver'
+                                                  : i == 2
+                                                  ? 'bronze'
+                                                  : ''
+                                          }`}
+                                      >
+                                          {i + 1}. {el.username}
+                                      </RaitingItemText>
+                                  </RaitingItemLeft>
+                                  <RaitingItemRight>
+                                      <RaitingItemCount>{el.wins}</RaitingItemCount>
+                                      <BalanceIcon alt="" src={IconCoin}></BalanceIcon>
+                                  </RaitingItemRight>
+                              </RaitingItem>
+                          ))}
             </Raiting>
         </Container>
     );

@@ -23,10 +23,11 @@ const userState = createSlice({
             state.user = payload;
         },
         setGame: (state, { payload }: { payload: { game: Tgame; init?: boolean } }) => {
+            console.log(payload.game);
             if (payload?.init) {
                 state.game = payload.game;
             } else {
-                state.game = { gameId: { ...state.game?.gameId, ...payload?.game.gameId } };
+                state.game = { game: { ...state.game?.game, ...payload?.game.game } };
             }
         },
         setWallet: (state, { payload }: { payload: string }) => {
@@ -41,11 +42,11 @@ const userState = createSlice({
             state.requestGame = payload;
         },
         userUpdResultGame: (state, { payload }: { payload: Tgame }) => {
-            if (state.user && payload?.gameId.Player1.id == state.user.userInfo.id) {
-                state.user.userInfo.wins = payload?.gameId.Player1.wins;
+            if (state.user && payload?.game.Player1.id == state.user.userInfo.id) {
+                state.user.userInfo.wins = payload?.game.Player1.wins;
             }
-            if (state.user && payload?.gameId.Player2.id == state.user.userInfo.id) {
-                state.user.userInfo.wins = payload?.gameId.Player2.wins;
+            if (state.user && payload?.game.Player2.id == state.user.userInfo.id) {
+                state.user.userInfo.wins = payload?.game.Player2.wins;
             }
         },
     },

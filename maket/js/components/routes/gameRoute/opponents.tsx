@@ -27,24 +27,24 @@ export default ({}: Tprops) => {
 
     const opponentRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        if (game && game.gameId.Winner != undefined) {
+        if (game && game.game.Winner != undefined) {
             const buttions = document.querySelectorAll('[data-butbox]');
             buttions.forEach((el, i) => {
                 if (i == 0 || i == 2) {
                     el.classList.add('hidden');
                 }
-                if (game.gameId.Winner != undefined && game.gameId.Move1 == undefined) {
+                if (game.game.Winner != undefined && game.game.Move1 == undefined) {
                     if (i == 1) {
                         el.classList.add('hidden');
                     }
                 }
                 if (i == 1) {
-                    const userCounter = game.gameId.Player1Id == user?.userInfo.id ? 1 : 2;
+                    const userCounter = game.game.Player1Id == user?.userInfo.id ? 1 : 2;
                     el
                         ?.querySelector('img')
                         // @ts-ignore: Unreachable code error
-                        ?.setAttribute('src', imgConfig[game.gameId[`Move${userCounter}`]]);
-                    if (user?.userInfo.id != game.gameId.Winner && game.gameId.Winner != 0) {
+                        ?.setAttribute('src', imgConfig[game.game[`Move${userCounter}`]]);
+                    if (user?.userInfo.id != game.game.Winner && game.game.Winner != 0) {
                         el.querySelector('div')?.classList.add('activeRed');
                     } else {
                         el.querySelector('div')?.classList.add('activeGreen');
@@ -55,8 +55,8 @@ export default ({}: Tprops) => {
     }, [game]);
 
     useEffect(() => {
-        if (game && game.gameId.Winner != undefined && game.gameId.Move1 != undefined) {
-            if (user?.userInfo.id == game.gameId.Winner) {
+        if (game && game.game.Winner != undefined && game.game.Move1 != undefined) {
+            if (user?.userInfo.id == game.game.Winner) {
                 opponentRef.current?.classList.add('activeRed');
             } else {
                 opponentRef.current?.classList.add('activeGreen');
@@ -68,8 +68,10 @@ export default ({}: Tprops) => {
             document.getElementById('reward')?.classList.add('active');
         }
 
-        if (game && game.gameId.Winner != undefined && game.gameId.Move1 == undefined) {
-            document.querySelector('[data-notmotion]')?.classList.add('visable');
+        if (game && game.game.Winner != undefined && game.game.Move1 == undefined) {
+            setTimeout(() => {
+                document.querySelector('[data-notmotion]')?.classList.add('visable');
+            }, 300);
         }
     });
 
@@ -80,15 +82,15 @@ export default ({}: Tprops) => {
                     <BottomButton
                         src={
                             game && user
-                                ? game.gameId[
-                                      `Move${game.gameId.Player1Id != user.userInfo.id ? 1 : 2}`
+                                ? game.game[
+                                      `Move${game.game.Player1Id != user.userInfo.id ? 1 : 2}`
                                   ] == ''
                                     ? close
                                     : // @ts-ignore: Unreachable code error
                                       imgConfig[
-                                          game.gameId[
+                                          game.game[
                                               `Move${
-                                                  game.gameId.Player1Id != user.userInfo.id ? 1 : 2
+                                                  game.game.Player1Id != user.userInfo.id ? 1 : 2
                                               }`
                                           ]
                                       ]

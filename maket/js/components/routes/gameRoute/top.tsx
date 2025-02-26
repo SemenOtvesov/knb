@@ -75,25 +75,25 @@ export default memo(
 function PlayerNameC() {
     const { PlayerName } = style();
     const { game, user } = useAppSelector(state => state.userState);
-    const opponentCounter = game?.gameId.Player1Id == user?.userInfo.id ? 2 : 1;
+    const opponentCounter = game?.game.Player1Id == user?.userInfo.id ? 2 : 1;
 
     useEffect(() => {
-        username = game?.gameId[`Player${opponentCounter}`].username;
+        username = game?.game[`Player${opponentCounter}`].username;
     }, [game]);
 
-    return <PlayerName>{game?.gameId[`Player${opponentCounter}`].username}</PlayerName>;
+    return <PlayerName>{game?.game[`Player${opponentCounter}`].username}</PlayerName>;
 }
 function RewardsC() {
     const { Rewards, BalanceIcon } = style();
     const { game, user } = useAppSelector(state => state.userState);
-    const opponentCounter = game?.gameId.Player1Id == user?.userInfo.id ? 2 : 1;
+    const opponentCounter = game?.game.Player1Id == user?.userInfo.id ? 2 : 1;
 
     return (
         <>
             <Rewards>
-                {game && game.gameId.Winner != undefined && game.gameId.Move1 != undefined
-                    ? game?.gameId[`Player${opponentCounter}`].wins
-                    : game?.gameId[`Player${opponentCounter}`].wins || 0 + 1}
+                {game && game.game.Winner != undefined && game.game.Move1 != undefined
+                    ? game?.game[`Player${opponentCounter}`].wins
+                    : game?.game[`Player${opponentCounter}`].wins || 0 + 1}
                 <BalanceIcon style={{ fontSize: '0.75em' }} alt="" src={IconCoin}></BalanceIcon>
             </Rewards>
             <Counter game={game} />

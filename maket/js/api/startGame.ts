@@ -21,7 +21,7 @@ export default async (dispatch: TappDispatch, navigate: NavigateFunction) => {
             dispatch(setGameType(null));
             return err;
         });
-    const startTimestamp = +new Date(res.data.gameId.Start);
+    const startTimestamp = +new Date(res.data.game.Start);
     if (startTimestamp - +new Date() < 0) {
         dispatch(setGame({ game: res.data, init: true }));
         navigate('/game');

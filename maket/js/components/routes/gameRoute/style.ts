@@ -77,6 +77,7 @@ export default () => {
             justifyContent: 'space-between',
             width: '100%',
             position: 'relative',
+            marginBottom: '5vh',
         }),
         BottomButton: styled.img({
             pointerEvents: 'all',
@@ -147,7 +148,7 @@ export default () => {
             left: 0,
             transform: ' translate(0, -100%)',
             '&.visable': {
-                transform: ' translate(0, calc(50vh - 50%))',
+                transform: ' translate(0, calc(60vh - 50%))',
             },
         }),
         NotmotionText: styled.div({ fontFamily: 'Game Of Squids' }),

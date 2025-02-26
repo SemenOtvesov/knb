@@ -21,7 +21,7 @@ export default () => {
             gap: '3vh',
             color: '#fff',
 
-            padding: '3em 1em',
+            padding: '3em 1em 1em',
         }),
         Title: styled.div({
             fontFamily: 'Game Of Squids',
@@ -45,12 +45,24 @@ export default () => {
             borderRadius: 20,
             padding: '0.25em',
         }),
-        Raiting: styled.div({ width: '100%' }),
+        Raiting: styled.div({
+            pointerEvents: 'all',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.8rem',
+            maxHeight: 'calc(3em * 10 + 0.5em * )',
+            overflow: 'auto',
+        }),
         RaitingItem: styled.div({
             display: 'flex',
             width: '100%',
             justifyContent: 'space-between',
             alignItems: 'center',
+            background:
+                'radial-gradient(circle, rgba(44,181,160,1) 15%, rgba(10,195,168,1) 61%, rgba(5,159,136,1) 100%)',
+            borderRadius: 10,
+            padding: 5,
         }),
         RaitingItemLeft: styled.div({
             display: 'flex',
@@ -88,7 +100,7 @@ export default () => {
         RaitingItemRight: styled.div({ display: 'flex', alignItems: 'center', gap: '0.25em' }),
         RaitingItemCount: styled.div({ fontWeight: 600, fontSize: '1.15em' }),
         BalanceIcon: styled.img({
-            width: '2em',
+            width: '1.65em',
         }),
         size,
     };

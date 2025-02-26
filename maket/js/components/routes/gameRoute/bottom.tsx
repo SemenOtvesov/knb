@@ -59,12 +59,12 @@ export default () => {
                 data-butbox
                 className="butBox noselect"
                 onClick={e => {
-                    if (game?.gameId.Winner == undefined) {
+                    if (game?.game.Winner == undefined) {
                         if (notSelected) {
                             notSelected = false;
                             setactiveCard('rock');
                         }
-                        game && makemove(dispatch, game.gameId.id, 'rock');
+                        game && makemove(dispatch, game.game.id, 'rock');
                     }
                 }}
             >
@@ -75,12 +75,12 @@ export default () => {
                 data-butbox
                 className="butBox noselect"
                 onClick={e => {
-                    if (game?.gameId.Winner == undefined) {
+                    if (game?.game.Winner == undefined) {
                         if (notSelected) {
                             notSelected = false;
                             setactiveCard('scissors');
                         }
-                        game && makemove(dispatch, game.gameId.id, 'scissors');
+                        game && makemove(dispatch, game.game.id, 'scissors');
                     }
                 }}
             >
@@ -91,12 +91,12 @@ export default () => {
                 data-butbox
                 className="butBox noselect"
                 onClick={e => {
-                    if (game?.gameId.Winner == undefined) {
+                    if (game?.game.Winner == undefined) {
                         if (notSelected) {
                             notSelected = false;
                             setactiveCard('paper');
                         }
-                        game && makemove(dispatch, game.gameId.id, 'paper');
+                        game && makemove(dispatch, game.game.id, 'paper');
                     }
                 }}
             >
@@ -106,14 +106,14 @@ export default () => {
 
             <RewardTextBox id="reward">
                 <RewardText>
-                    {user?.userInfo.id == game?.gameId.Winner
+                    {user?.userInfo.id == game?.game.Winner
                         ? 'Победа!'
-                        : game?.gameId.Winner == 0
+                        : game?.game.Winner == 0
                         ? 'Ничья'
                         : 'Проигрыш...'}
                 </RewardText>
                 <RewardValue>
-                    {user?.userInfo.id == game?.gameId.Winner ? '+1' : '+0'}
+                    {user?.userInfo.id == game?.game.Winner ? '+1' : '+0'}
                     <BalanceIcon style={{ fontSize: '0.75em' }} alt="" src={IconCoin}></BalanceIcon>
                 </RewardValue>
             </RewardTextBox>

@@ -31,8 +31,8 @@ export default ({ game }: { game: Tgame }) => {
 
     useEffect(() => {
         if (counter < 1 && requestGame != true) {
-            if (game && game.gameId.Winner == undefined) {
-                dispatch(setGame({ game: { gameId: { ...game.gameId, Winner: 1 } } }));
+            if (game && game.game.Winner == undefined) {
+                dispatch(setGame({ game: { game: { ...game.game, Winner: 1 } } }));
             }
         }
     }, [counter]);
@@ -42,7 +42,7 @@ export default ({ game }: { game: Tgame }) => {
     });
 
     useEffect(() => {
-        if (game && game.gameId.Winner != undefined) {
+        if (game && game.game.Winner != undefined) {
             let i = 5;
             const int = setInterval(() => {
                 if (i < 1) {

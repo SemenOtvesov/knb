@@ -15,7 +15,7 @@ export type Tuser = {
 } | null;
 
 export type Tgame = {
-    gameId: {
+    game: {
         id: number;
         Player1Id: number;
         Player2Id: number;
