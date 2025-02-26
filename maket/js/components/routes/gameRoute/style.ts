@@ -12,7 +12,7 @@ export default () => {
             position: 'sticky',
             top: '5vh',
             left: '0',
-            height: 'calc(90vh - 1em)',
+            height: 'calc(95vh)',
             width: '100vw',
 
             display: 'flex',
