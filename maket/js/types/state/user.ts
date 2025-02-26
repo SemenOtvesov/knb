@@ -3,6 +3,7 @@ export type Tuser = {
         id: number;
         wallet: string;
         wins: number;
+        daywins: number;
         username: string;
         draws: number;
         games: number;
@@ -34,6 +35,7 @@ export type Tplayer = {
     id: number;
     wallet: string;
     wins: number;
+    daywins: number;
     username: string;
     draws: number;
     games: number;

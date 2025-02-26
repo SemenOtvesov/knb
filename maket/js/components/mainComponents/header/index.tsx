@@ -81,7 +81,7 @@ const header = memo(
                     />
                 </AvatarBox>
                 <BalanceBox>
-                    <BalanceText>{user?.userInfo.wins || 0}</BalanceText>
+                    <BalanceText>{user?.userInfo.daywins || 0}</BalanceText>
                     <BalanceValue>
                         {user ? user.coins : ''}
                         <BalanceIconBox>

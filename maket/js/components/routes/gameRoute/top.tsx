@@ -22,9 +22,7 @@ const AvatarL = memo(
             document.documentElement.clientWidth,
         );
         const [renderGen, setrenderGen] = useState('');
-        console.log(username, !username);
         useEffect(() => {
-            console.log(username, !username);
             if (!username) {
                 const int = setInterval(() => {
                     if (username) {
@@ -91,9 +89,9 @@ function RewardsC() {
     return (
         <>
             <Rewards>
-                {game && game.game.Winner != undefined && game.game.Move1 != undefined
-                    ? game?.game[`Player${opponentCounter}`].wins
-                    : game?.game[`Player${opponentCounter}`].wins || 0 + 1}
+                {game && game.game.Winner != undefined && game.game.Move1 == undefined
+                    ? (game?.game[`Player${opponentCounter}`].daywins || 0) + 1
+                    : game?.game[`Player${opponentCounter}`].daywins || 0}
                 <BalanceIcon style={{ fontSize: '0.75em' }} alt="" src={IconCoin}></BalanceIcon>
             </Rewards>
             <Counter game={game} />
