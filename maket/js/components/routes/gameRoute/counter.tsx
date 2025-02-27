@@ -58,7 +58,7 @@ export default ({ game }: { game: Tgame }) => {
 
     return (
         <Counter>
-            <div>{counter}</div>
+            <div id="counter">{counter}</div>
         </Counter>
     );
 };

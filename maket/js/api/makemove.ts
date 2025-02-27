@@ -27,10 +27,19 @@ export default async (
         },
     );
 
-    setTimeout(() => {
-        dispatch(setGame({ game: { game: res.data.Result } }));
-        dispatch(userUpdResultGame({ game: res.data.Result }));
-        dispatch(setRequestGame(false));
-    });
+    const counter = document.getElementById('counter')?.innerHTML;
+    if (counter) {
+        setTimeout(() => {
+            dispatch(setGame({ game: { game: res.data.Result } }));
+            dispatch(userUpdResultGame({ game: res.data.Result }));
+            dispatch(setRequestGame(false));
+        }, +counter * 1000);
+    } else {
+        setTimeout(() => {
+            dispatch(setGame({ game: { game: res.data.Result } }));
+            dispatch(userUpdResultGame({ game: res.data.Result }));
+            dispatch(setRequestGame(false));
+        });
+    }
     return res.data;
 };
