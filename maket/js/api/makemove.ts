@@ -27,17 +27,10 @@ export default async (
         },
     );
 
-    const endTimestamp = +new Date(res.data.Result.End);
-    if (endTimestamp - +new Date() < 0) {
+    setTimeout(() => {
         dispatch(setGame({ game: { game: res.data.Result } }));
         dispatch(userUpdResultGame({ game: res.data.Result }));
         dispatch(setRequestGame(false));
-    } else {
-        setTimeout(() => {
-            dispatch(setGame({ game: { game: res.data.Result } }));
-            dispatch(userUpdResultGame({ game: res.data.Result }));
-            dispatch(setRequestGame(false));
-        }, endTimestamp - +new Date());
-    }
+    });
     return res.data;
 };
