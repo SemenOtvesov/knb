@@ -43,10 +43,10 @@ const userState = createSlice({
         },
         userUpdResultGame: (state, { payload }: { payload: Tgame }) => {
             if (state.user && payload?.game.Player1.id == state.user.userInfo.id) {
-                state.user.userInfo.wins = payload?.game.Player1.wins;
+                state.user.userInfo.daywins = payload?.game.Player1.daywins;
             }
             if (state.user && payload?.game.Player2.id == state.user.userInfo.id) {
-                state.user.userInfo.wins = payload?.game.Player2.wins;
+                state.user.userInfo.daywins = payload?.game.Player2.daywins;
             }
         },
     },
